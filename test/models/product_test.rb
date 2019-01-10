@@ -51,6 +51,27 @@ class ProductTest < ActiveSupport::TestCase
 		end
 	end
 
+	def new_produc (title)
+		Product.new(title:       title,
+					description: "yyy",
+					price:       1,
+					image_url:   "xny.png")
+	end
+
+	test "title length" do
+		ok  = %w{gggggggggg ggggggggggjjj gggggggggghkjnk}
+		bad = %w{ggggggg gggggjjj gggghkjnk}
+
+		ok.each do |name|
+			assert new_produc(name).valid?, "#{name} should not be invalid"
+		end
+
+		bad.each do |name|
+			assert new_produc(name).invalid?, "#{name} should not be valid"
+		end
+	end
+
+=begin
 	test "product is not valid without a unique title" do
 		product = Product.new(title:       products(:ruby).title,
 							  description: "yyy",
@@ -60,4 +81,5 @@ class ProductTest < ActiveSupport::TestCase
 		assert product.invalid?
 		assert_equal ["has already bee taken"], product.errors[:title]
 	end
+=end
 end
