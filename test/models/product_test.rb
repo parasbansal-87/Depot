@@ -51,7 +51,7 @@ class ProductTest < ActiveSupport::TestCase
 		end
 	end
 
-	def new_produc (title)
+	def new_prod (title)
 		Product.new(title:       title,
 					description: "yyy",
 					price:       1,
@@ -63,11 +63,11 @@ class ProductTest < ActiveSupport::TestCase
 		bad = %w{ggggggg gggggjjj gggghkjnk}
 
 		ok.each do |name|
-			assert new_produc(name).valid?, "#{name} should not be invalid"
+			assert new_prod(name).valid?, "#{name} should not be invalid"
 		end
 
 		bad.each do |name|
-			assert new_produc(name).invalid?, "#{name} should not be valid"
+			assert new_prod(name).invalid?, "#{name} should not be valid"
 		end
 	end
 
